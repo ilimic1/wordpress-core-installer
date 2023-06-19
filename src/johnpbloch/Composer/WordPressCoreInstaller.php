@@ -77,6 +77,14 @@ class WordPressCoreInstaller extends LibraryInstaller {
 		return $installationDir;
 	}
 
+	public function isInstalled(InstalledRepositoryInterface $repo, PackageInterface $package) {
+		$installPath = $this->getInstallPath($package);
+		if ($installPath && is_dir($installPath) && file_exists($installPath . '/index.php')) {
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
